@@ -36,6 +36,14 @@
     remote_src: yes
     mode: 0755
 
+- name: Creating the soft link to node_exporter in /usr/bin
+  file:
+    src: "/opt/Prometheus/exporters/node_exporter"
+    dest: "/usr/bin"
+    state: link
+    owner: "{{userId}}"
+    group: "{{groupId}}"
+
 - name: Delete node exporter tmp folder
   file:
     path: '/tmp/node_exporter-{{ version }}.linux-amd64'
