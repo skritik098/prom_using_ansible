@@ -1,6 +1,6 @@
 ## Getting Started
 
-Step 1: Update ip address of both instances in inventory file.
+Step 1: Update ip address of instances in inventory file for the Node Exporter
 
 Step 2: Run ansible command to setup node exporter
 
