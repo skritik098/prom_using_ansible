@@ -1,5 +1,2 @@
-[prometheus]
-52.15.222.96
-
 [node_exporter]
-18.222.182.23
+18.222.182.23 ansible_user=tapadmin ansible_password=

@@ -1,6 +1,6 @@
 ---
-serviceName: "node_exporter"
+serviceName: "Node Exporter"
 userId: "node_exporter"
 groupId: "node_exporter"
-exec_command: /usr/local/bin/node_exporter
+exec_command: /opt/Prometheus/exporters/node_exporter
 version: 0.16.0

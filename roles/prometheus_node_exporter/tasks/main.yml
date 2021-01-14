@@ -1,6 +1,15 @@
+- name: Creating the directory
+  file:
+    state: directory
+    path: "/opt/Prometheus/exporters"
+    mode: '0755'
+    group: "{{groupId}}"
+    owner: "{{userId}}"
+
 - name: Creating node_exporter user group
   group: name="{{groupId}}"
   become: true
+
 
 - name: Creating node_exporter user
   user:
@@ -21,7 +30,7 @@
 - name: Copy prometheus node exporter file to bin
   copy:
     src: "/tmp/node_exporter-{{ version }}.linux-amd64/node_exporter"
-    dest: "/usr/local/bin/node_exporter"
+    dest: "/opt/Prometheus/exporters/node_exporter"
     owner: "{{userId}}"
     group: "{{groupId}}"
     remote_src: yes
