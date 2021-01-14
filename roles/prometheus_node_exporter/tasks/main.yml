@@ -1,11 +1,3 @@
-- name: Creating the directory
-  file:
-    state: directory
-    path: "/opt/Prometheus/exporters"
-    mode: '0755'
-    group: "{{groupId}}"
-    owner: "{{userId}}"
-
 - name: Creating node_exporter user group
   group: name="{{groupId}}"
   become: true
@@ -21,13 +13,22 @@
     createhome: "no"
     state: present
 
+- name: Creating the directory
+  file:
+    state: directory
+    path: "/opt/Prometheus/exporters"
+    mode: '0755'
+    group: "{{ groupId }}"
+    owner: "{{ userId }}"
+
+
 - name: Install prometheus node exporter
   unarchive:
     src: "https://github.com/prometheus/node_exporter/releases/download/v{{ version }}/node_exporter-{{ version }}.linux-amd64.tar.gz"
     dest: /tmp/
     remote_src: yes
 
-- name: Copy prometheus node exporter file to bin
+- name: Copy prometheus node exporter file to /opt/Prometheus/exporters
   copy:
     src: "/tmp/node_exporter-{{ version }}.linux-amd64/node_exporter"
     dest: "/opt/Prometheus/exporters/node_exporter"
@@ -39,7 +40,7 @@
 - name: Creating the soft link to node_exporter in /usr/bin
   file:
     src: "/opt/Prometheus/exporters/node_exporter"
-    dest: "/usr/bin"
+    dest: "/usr/bin/node_exporter"
     state: link
     owner: "{{userId}}"
     group: "{{groupId}}"
