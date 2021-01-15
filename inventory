@@ -1,2 +1,5 @@
 [node_exporter]
-localhost ansible_user=tapadmin ansible_password=P@ssw0rd!102 
+localhost ansible_user=cuser01 ansible_password=C0nsul9!
+
+[grafana]
+localhost ansible_user=cuser01 ansible_password=C0nsul9!
