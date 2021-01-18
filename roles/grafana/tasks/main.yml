@@ -1,7 +1,14 @@
+# - name: Install grafana
+#   yum:
+#     name: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-{{ version }}-1.x86_64.rpm
+#     state: latest
+
 - name: Install grafana
-  yum:
-    name: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-{{ version }}-1.x86_64.rpm
-    state: latest
+  deb:
+    deb: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-{{ version }}-1.x86_64.rpm
+    state: present
+  when: ansible_facts['os_family'] == "Debian"
+
 
 - name: "Grafana configuration file copy"
   template:
@@ -17,6 +24,6 @@
 
 - name: "Check if Grafana is accessible."
   uri:
-    url: http://127.0.0.1:3000
+    url: http://localhost:3000
     method: GET
     status_code: 200

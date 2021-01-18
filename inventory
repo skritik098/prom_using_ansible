@@ -1,5 +1,9 @@
 [node_exporter]
-localhost ansible_user=cuser01 ansible_password=C0nsul9!
+localhost ansible_user= ansible_password=
 
 [grafana]
 localhost ansible_user=cuser01 ansible_password=C0nsul9!
+
+[prometheus]
+localhost ansible_user= ansible_password=
+

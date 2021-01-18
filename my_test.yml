@@ -1,0 +1,11 @@
+- hosts: prometheus   # Where I want to run or execute this play. 
+              # It could a single system or group of system
+  tasks:
+    - apt_repository:
+        repo: deb https://packages.grafana.com/oss/deb stable main
+        state: present
+
+    - name: Installing the httpd package
+      package:
+        name: grafana
+        state: present
