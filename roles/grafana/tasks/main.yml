@@ -4,10 +4,10 @@
 #     state: latest
 
 - name: Install grafana
-  deb:
-    deb: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-{{ version }}-1.x86_64.rpm
+  apt:
+    deb:  https://dl.grafana.com/oss/release/grafana_{{ version }}_amd64.deb
     state: present
-  when: ansible_facts['os_family'] == "Debian"
+  when: ansible_facts['os_family'] | lower == "debian"
 
 
 - name: "Grafana configuration file copy"
