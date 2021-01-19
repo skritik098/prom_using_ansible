@@ -1,10 +1,21 @@
 ---
-- hosts: node_exporter
+# - hosts: node_exporter
+#   become: yes
+#   become_method: sudo
+#   roles:
+#     - prometheus_node_exporter
+
+# - hosts: consul_exporter
+#   become: yes
+#   become_method: sudo
+#   roles:
+#     - prometheus_consul_exporter
+
+- hosts: consul_agent
   become: yes
   become_method: sudo
   roles:
-    - prometheus_node_exporter
-
+    - consul_agent
 
 - hosts: grafana
   become: yes

@@ -1,0 +1,24 @@
+{
+  "Node": "tpap",
+  "Address": "{{ inventory_hostname }}",
+  "NodeMeta": {
+    "external-node": "true",
+    "external-probe": "true"
+  },
+  "Service": {
+    "ID": "node_exporter",
+    "Service": "node_exporter",
+    "Tags": ["node_exporter", "prometheus"],
+    "Port": 9100
+  },
+  "Checks": [
+    {
+      "Name": "http-check",
+      "status": "passing",
+      "Definition": {
+        "http": "{{ inventory_hostname }}:9100",
+        "interval": "30s"
+      }
+    }
+  ]
+}
