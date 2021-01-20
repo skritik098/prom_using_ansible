@@ -1,9 +1,0 @@
-datacenter = "{{ consul_datacenter_name }}"
-data_dir = "{{ consul_data_dir }}"
-encrypt = "{{ consul_key.stdout }}"
-retry_join = ["{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"]
-bind_addr = "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
-
-performance {
-  raft_multiplier = 1
-}
