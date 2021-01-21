@@ -4,7 +4,7 @@
     state: present
 
 - name: Add the repo
-  command: "yum-config-manager --add-repo sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo"
+  command: "yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo"
 
 - name: Installing consul latest package
   yum:
@@ -71,6 +71,21 @@
   service:
     name: "consul"
     state: started
+    enabled: true
+
+- name: Adding the firewall rule
+  firewalld:
+    port: "{{  item }}/tcp"
+    state: enabled
+    permanent: yes
+    immediate: yes
+  loop:
+      - 8500
+      - 8300
+      - 8301
+      - 8302
+      - 8600
+
 
 
 # - name: Start the consule service

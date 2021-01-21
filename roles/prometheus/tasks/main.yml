@@ -68,6 +68,14 @@
     state: started
     enabled: yes
 
+- name: Adding the firewall rule
+  firewalld:
+    port: "9090/tcp"
+    state: enabled
+    permanent: yes
+    immediate: yes
+
+
 - name: Check if prometheus is accessible
   uri:
     url: http://localhost:9090

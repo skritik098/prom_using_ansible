@@ -28,6 +28,14 @@
     enabled: true
     state: started
 
+- name: Adding the firewall rule
+  firewalld:
+    port: "3000/tcp"
+    state: enabled
+    permanent: yes
+    immediate: yes
+
+
 - name: "Check if Grafana is accessible."
   uri:
     url: http://localhost:3000

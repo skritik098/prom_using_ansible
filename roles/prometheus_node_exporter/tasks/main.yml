@@ -61,6 +61,14 @@
     state: started
     enabled: yes
 
+- name: Adding the firewall rule
+  firewalld:
+    port: "9100/tcp"
+    state: enabled
+    permanent: yes
+    immediate: yes
+
+
 - name: Check if node exporter emits metrices
   uri:
     url: http://127.0.0.1:9100/metrics
