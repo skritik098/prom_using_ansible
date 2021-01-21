@@ -2,7 +2,7 @@
 - name: Register the node_exporter with consul
   template:
     src: external.json.j2
-    dest: "{{ consul_config_dir }}/external.json"
+    dest: "{{ consul_config_dir }}/external.hcl"
     owner: "{{ consul_username }}"
     group: "{{ consul_groupname }}"
     mode: 0750
