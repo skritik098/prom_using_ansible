@@ -32,7 +32,7 @@
     path: '/tmp/prometheus-{{ version }}.linux-amd64'
     state: absent
 
-- name: Creates directory
+- name: Creates directory for Stooring Prometheus Data
   file: 
     path: "/data/prometheus/"
     state: directory
@@ -40,7 +40,7 @@
     group: "{{groupId}}"
     mode: 0755
 
-- name: Creates directory
+- name: Creates directory for prometheus configuration file
   file: 
     path: "/etc/prometheus/"
     state: directory
@@ -48,7 +48,7 @@
     group: "{{groupId}}"
     mode: 0755
 
-- name: config file
+- name: Copying the config file
   template:
     src: prometheus.conf.j2
     dest: /etc/prometheus/prometheus.conf
@@ -61,6 +61,8 @@
   notify: 
    - systemd_reload
    
+- name: Flush the handlers
+  meta: flush_handlers
 
 - name: Start prometheus service
   service:
